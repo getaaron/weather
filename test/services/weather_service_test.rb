@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class WeatherServiceTest < ActiveSupport::TestCase
-    setup do
-        @stub = stub_request(:get, /forecast/)
-        .to_return(status: 200, body: weather_forecast_body, headers: {})
-        Rails.cache.clear
-    end
+  setup do
+    @stub = stub_request(:get, /forecast/)
+            .to_return(status: 200, body: weather_forecast_body, headers: {})
+    Rails.cache.clear
+  end
 
   test 'should return weather data' do
     weather = WeatherService.new.get_weather(60611)
@@ -18,7 +20,6 @@ class WeatherServiceTest < ActiveSupport::TestCase
     WeatherService.new.get_weather(60611)
     assert_requested(@stub, times: 1)
   end
-
 
   def weather_forecast_body
     File.read('test/fixtures/forecast.json')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WeatherController < ApplicationController
   def index
     # nothing to do here since this just shows the form
@@ -13,11 +15,12 @@ class WeatherController < ApplicationController
   end
 
   private
-    def id
-      params.require(:id)
-    end
 
-    def zip
-      params.require(:zip)
-    end
+  def id
+    params.require(:id)
+  end
+
+  def zip
+    params.require(:zip)
+  end
 end
