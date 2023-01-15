@@ -9,13 +9,13 @@ class WeatherService
   def get_weather(zip)
     key = Rails.application.credentials.weather_api_key
     path = "forecast.json?key=#{key}&q=#{zip}"
-    response = Rails.cache.fetch(path, expires_in: 30.seconds) do
-      get(path)
+    Rails.cache.fetch(path, expires_in: 30.minutes) do
+      response = get(path)
+      id = SecureRandom.uuid
+      weather = Weather.new(id, zip, JSON.parse(response.body, symbolize_names: true))
+      recents[id] = weather
+      weather
     end
-    id = SecureRandom.uuid
-    weather = Weather.new(id, zip, JSON.parse(response.body, symbolize_names: true))
-    recents[id] = weather
-    weather
   end
 
   def get_recent(id)
