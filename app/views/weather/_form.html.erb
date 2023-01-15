@@ -1,0 +1,15 @@
+<section>
+<article>
+<%= form_with(url: weather_index_path) do |form| %>
+  <h2>New weather search</h2>
+  <div>
+    <%= form.label :zip_code %>
+    <%= form.text_field :zip %>
+
+  <div>
+    <%= form.submit "Search Weather" %>
+  </div>
+  </div>
+<% end %>
+</article>
+</section>

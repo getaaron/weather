@@ -1,0 +1,8 @@
+<%= render "form" %>
+<section>
+<article>
+<h2>Results</h2>
+<p>The current temperature in <strong><%= @weather.zip %></strong> is <strong><%= @weather.current_temp %>ºF</strong>.</p>
+<p>The forecast is <strong><%= @weather.forecast.downcase %></strong>.</p>
+</article>
+</section>
