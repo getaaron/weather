@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+1. Get an API token from [WeatherAPI](https://www.weatherapi.com)
+2. Clone this repo
+3. `bundle` to install dependencies
+4. Set `weather_api_key` in the rails credentials using your preferred editor, for example
+    EDITOR="vi" bundle exec rails credentials:edit
+5. `bundle exec rails s`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can also run `bundle exec rails test` to run the tests.
