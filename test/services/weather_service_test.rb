@@ -8,17 +8,20 @@ class WeatherServiceTest < ActiveSupport::TestCase
   end
 
   test 'should return weather data' do
-    weather = WeatherService.new.get_weather(60611)
+    weather = WeatherService.instance.get_weather(60611)
     assert_requested(@stub, times: 1)
     assert_instance_of Weather, weather
   end
 
   test 'should cache http data' do
-    WeatherService.new.get_weather(60611)
-    WeatherService.new.get_weather(60611)
-    WeatherService.new.get_weather(60611)
-    WeatherService.new.get_weather(60611)
+    a = WeatherService.instance.get_weather(60611)
+    b = WeatherService.instance.get_weather(60611)
+    c = WeatherService.instance.get_weather(60611)
+    d = WeatherService.instance.get_weather(60611)
     assert_requested(@stub, times: 1)
+    assert_equal(a.created_at, b.created_at)
+    assert_equal(c.created_at, b.created_at)
+    assert_equal(d.created_at, b.created_at)
   end
 
   def weather_forecast_body
